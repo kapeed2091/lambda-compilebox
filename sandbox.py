@@ -31,14 +31,14 @@ class Sandbox:
         f = open(code_file_path, 'w')
         f.write(self.code)
         f.close()
-        os.chmod(code_file_path, mode=0o777)
+        os.chmod(code_file_path, 0o777)
         self.code_file_path = code_file_path
 
         input_file_path = os.path.join(self.temp_folder, "inputFile")
         f = open(input_file_path, 'w')
         f.write(self.stdin_data)
         f.close()
-        os.chmod(input_file_path, mode=0o777)
+        os.chmod(input_file_path, 0o777)
 
     def execute(self):
         logfile_path = os.path.join(self.temp_folder, "logfile.txt")
