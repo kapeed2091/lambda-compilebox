@@ -12,9 +12,10 @@ compiler_dict = {
 
 
 def handler(event, context):
-    language = event['request']['language']
-    code = event['request']['code']
-    stdin = event['request']['stdin']
+    import base64
+    language = event['language']
+    code = base64.b64decode(event['code']).decode('utf8')
+    stdin = event['stdin']
     return compile_code(language, code, stdin)
 
 

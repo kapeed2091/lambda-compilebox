@@ -51,7 +51,12 @@ class Sandbox:
             script_path=script_path, temp_folder=self.temp_folder,
             compiler_name=self.compiler_name,
             code_file_path=self.code_file_path)
-        os.system(command_str)
+
+        from run_cmd import run_cmd
+        rc, response = run_cmd(command_str)
+
+        if rc != 0:
+            raise Exception
 
         f = open(completed_file_path, 'r')
         completed_data = f.read()
