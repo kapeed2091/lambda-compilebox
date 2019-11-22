@@ -32,6 +32,7 @@ class Sandbox:
         f.write(self.code)
         f.close()
         os.chmod(code_file_path, mode=0o777)
+        self.code_file_path = code_file_path
 
         input_file_path = os.path.join(self.temp_folder, "inputFile")
         f = open(input_file_path, 'w')
@@ -46,9 +47,10 @@ class Sandbox:
 
         script_path = os.path.join(self.path, 'Payload/script.sh')
 
-        command_str = "sh {script_path} {temp_folder} {compiler_name}".format(
+        command_str = "sh {script_path} {temp_folder} {compiler_name} {code_file_path}".format(
             script_path=script_path, temp_folder=self.temp_folder,
-            compiler_name=self.compiler_name, )
+            compiler_name=self.compiler_name,
+            code_file_path=self.code_file_path)
         os.system(command_str)
 
         f = open(completed_file_path, 'r')
